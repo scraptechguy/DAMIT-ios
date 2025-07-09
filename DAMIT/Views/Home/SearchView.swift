@@ -46,6 +46,12 @@ struct SearchView: View {
                     
                     Spacer()
                 }.padding()
+                
+                Text("(10755 asteroids with 16091 models and 5 tumblers)")
+                    .font(.footnote)
+                    .foregroundStyle(Color.secondary)
+                    .padding([.horizontal, .bottom])
+                    .padding(.bottom)
 
                 HStack(alignment: .center, spacing: 0) {
                     Text("Models")
