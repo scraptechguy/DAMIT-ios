@@ -11,16 +11,39 @@ struct HomeView: View {
     @EnvironmentObject var model: ContentModel
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            VStack(spacing: 0) {
+                HStack {
+                    Image("DAMIT_logo")
+                        .padding(.leading)
+                    
+                    Text("DAMIT")
+                        .bold()
+                        .font(.title2)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        
+                    }, label: {
+                        Image(systemName: "line.3.horizontal")
+                            .foregroundStyle(Color.primary)
+                            .padding(.trailing)
+                            .scaleEffect(1.3)
+                    })
+                }.frame(width: model.screenSize.width)
+                    .padding(.vertical)
+                    .background(.thinMaterial)
+                    
+                Divider()
+                
+                Spacer()
+            }
         }
-        .padding()
     }
 }
 
 #Preview {
     HomeView()
+        .environmentObject(ContentModel())
 }

@@ -8,5 +8,5 @@
 import SwiftUI
 
 class ContentModel: ObservableObject {
-    
+    let screenSize: CGRect = UIScreen.main.bounds
 }
