@@ -14,17 +14,34 @@ struct HomeView: View {
         ZStack {
             VStack(spacing: 0) {
                 HStack {
+                    if model.isShowingMenu {
+                        Button(action: {
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                model.isShowingMenu = false
+                            }
+                        }, label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundStyle(Color.primary)
+                                .scaleEffect(1.3)
+                                .padding(.leading)
+                        })
+                        
+                        Spacer()
+                    }
+                    
                     Image("DAMIT_logo")
                         .padding(.leading)
                     
                     Text("DAMIT")
-                        .bold()
+                        .bold(model.isShowingMenu ? false : true)
                         .font(.title2)
                     
                     Spacer()
                     
                     Button(action: {
-                        
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            model.isShowingMenu.toggle()
+                        }
                     }, label: {
                         Image(systemName: "line.3.horizontal")
                             .foregroundStyle(Color.primary)
@@ -40,7 +57,7 @@ struct HomeView: View {
                 SearchView()
                 
                 Spacer()
-            }
+            }.ignoresSafeArea(edges: .bottom)
         }
     }
 }
