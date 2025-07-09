@@ -1,0 +1,12 @@
+//
+//  ContentModel.swift
+//  DAMIT
+//
+//  Created by Rostislav Brož on 09.07.2025.
+//
+
+import SwiftUI
+
+class ContentModel: ObservableObject {
+    
+}
