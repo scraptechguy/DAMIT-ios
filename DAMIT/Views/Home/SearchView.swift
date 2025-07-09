@@ -46,6 +46,33 @@ struct SearchView: View {
                     
                     Spacer()
                 }.padding()
+
+                HStack(alignment: .center, spacing: 0) {
+                    Text("Models")
+                        .bold()
+                        .foregroundColor(Color.primary)
+                        .padding(.horizontal)
+                    
+                    Spacer()
+                    
+                    Group {
+                        Text("λ")
+                            .bold()
+                        
+                        Text("β")
+                            .bold()
+                        
+                        Text("*P*")
+                            .bold()
+                    }.foregroundStyle(Color.primary)
+                        .scaledToFit()
+                        .frame(width: model.screenSize.width / 7)
+                        .padding(.horizontal)
+                }.padding(.bottom)
+                
+                Rectangle()
+                    .foregroundStyle(Color.secondary)
+                    .frame(width: model.screenSize.width, height: 1)
                 
                 ForEach(Array(filteredAsteroids.enumerated()), id: \.offset) { index, asteroid in
                     asteroidRow(for: asteroid)
@@ -63,9 +90,10 @@ struct SearchView: View {
                     Spacer()
                      
                     Text("No matches")
-                        .foregroundColor(.secondary)
                         .bold()
+                        .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
+                        .padding()
                      
                     Spacer()
                                  
@@ -88,18 +116,31 @@ struct SearchView: View {
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
                     VStack {
-                        Text(asteroid)
-                            .foregroundColor(Color.primary)
-                            .padding(.horizontal)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .multilineTextAlignment(.leading)
-
-                            Text("asteroid")
-                                .foregroundColor(.secondary)
-                                .font(.footnote)
+                        HStack(alignment: .center, spacing: 0) {
+                            Text(asteroid)
+                                .foregroundColor(Color.primary)
                                 .padding(.horizontal)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .multilineTextAlignment(.leading)
+                            
+                            Spacer()
+                            
+                            Group {
+                                Text("103")
+                                Text("27")
+                                Text("7.209531")
+                            }.foregroundStyle(Color.primary)
+                                .scaledToFit()
+                                .frame(width: model.screenSize.width / 7)
+                                .padding(.horizontal)
+                        }
+
+                        Text("nonconvex model reconstructed from ALMA+AO+LC")
+                            .foregroundColor(.secondary)
+                            .font(.footnote)
+                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .multilineTextAlignment(.leading)
                     }.padding(.vertical)
                 }
                 
