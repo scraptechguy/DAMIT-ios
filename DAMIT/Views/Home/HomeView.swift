@@ -37,6 +37,8 @@ struct HomeView: View {
                     
                 Divider()
                 
+                SearchView()
+                
                 Spacer()
             }
         }
