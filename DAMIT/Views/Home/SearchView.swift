@@ -53,7 +53,20 @@ struct SearchView: View {
                             TextField("Search asteroids", text: $searchText)
                                 .focused($isSearchFocused)
                                 .padding(.trailing)
-                        }.frame(width: model.screenSize.width / 1.8, height: model.screenSize.height / 20)
+                            
+                            Spacer()
+                            
+                            if !searchText.trimmingCharacters(in: .whitespaces).isEmpty {
+                                Button(action: {
+                                    searchText = ""
+                                    isSearchFocused = false
+                                }, label: {
+                                    Image(systemName: "multiply")
+                                        .foregroundStyle(Color.secondary)
+                                        .padding(.trailing)
+                                })
+                            }
+                        }.frame(width: model.screenSize.width / 1.6, height: model.screenSize.height / 20)
                             .background(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(style: StrokeStyle(lineWidth: 1))
@@ -137,10 +150,6 @@ struct SearchView: View {
             }.onAppear {
                 loadRandomAsteroids()
             }
-            
-            MenuView()
-                .offset(x: model.isShowingMenu ? 0 : model.screenSize.width)   // hidden off-screen when closed
-                .animation(.easeInOut(duration: 0.3), value: model.isShowingMenu)
         }
     }
     
