@@ -13,7 +13,7 @@ struct AsteroidModelDetail: View {
     var body: some View {
         Text(asteroid)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(.ultraThickMaterial)
+            .background(.ultraThickMaterial)
     }
 }
 

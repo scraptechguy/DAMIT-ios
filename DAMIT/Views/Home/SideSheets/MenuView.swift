@@ -14,7 +14,9 @@ struct MenuView: View {
         ScrollView {
             LazyVStack(spacing: 0) {
                 Button(action: {
-                    
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        model.isShowingSideSheet = true
+                    }
                 }, label: {
                     Text("Models 🪨")
                         .bold()
@@ -27,7 +29,9 @@ struct MenuView: View {
                     .frame(width: model.screenSize.width / 3.5)
                 
                 Button(action: {
-                    
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        model.isShowingSideSheet = true
+                    }
                 }, label: {
                     Text("Tumblers")
                         .bold()
@@ -40,7 +44,9 @@ struct MenuView: View {
                     .frame(width: model.screenSize.width / 3)
                 
                 Button(action: {
-                    
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        model.isShowingSideSheet = true
+                    }
                 }, label: {
                     Text("Tables 📁")
                         .bold()
@@ -53,7 +59,9 @@ struct MenuView: View {
                     .frame(width: model.screenSize.width / 4)
                 
                 Button(action: {
-                    
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        model.isShowingSideSheet = true
+                    }
                 }, label: {
                     Text("Export 📤")
                         .bold()
@@ -66,7 +74,9 @@ struct MenuView: View {
                     .frame(width: model.screenSize.width / 4)
                 
                 Button(action: {
-                    
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        model.isShowingSideSheet = true
+                    }
                 }, label: {
                     Text("Documentation 📖")
                         .bold()
@@ -79,7 +89,9 @@ struct MenuView: View {
                     .frame(width: model.screenSize.width / 2.5)
                 
                 Button(action: {
-                    
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        model.isShowingSideSheet = true
+                    }
                 }, label: {
                     Text("App Settings 🔧")
                         .bold()

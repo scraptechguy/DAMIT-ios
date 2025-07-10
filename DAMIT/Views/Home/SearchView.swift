@@ -173,7 +173,7 @@ struct SearchView: View {
             selectedAsteroid = asteroid
             
             withAnimation(.easeInOut(duration: 0.3)) {
-                model.isShowingSideSheet = true
+                model.isShowingAsteroidDetail = true
             }
         }, label: {
             VStack(alignment: .leading, spacing: 0) {

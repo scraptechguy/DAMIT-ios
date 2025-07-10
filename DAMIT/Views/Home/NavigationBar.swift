@@ -13,19 +13,20 @@ struct NavigationBar: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                if model.isShowingMenu || model.isShowingSideSheet {
+                if model.isShowingMenu || model.isShowingSideSheet || model.isShowingAsteroidDetail {
                     Button(action: {
                         withAnimation(.easeInOut(duration: 0.3)) {
-                            if model.isShowingMenu {
-                                model.isShowingMenu = false
-                            } else if model.isShowingSideSheet {
+                            if model.isShowingSideSheet {
                                 model.isShowingSideSheet = false
+                            } else if model.isShowingMenu {
+                                model.isShowingMenu = false
+                            } else if model.isShowingAsteroidDetail {
+                                model.isShowingAsteroidDetail = false
                             }
                         }
                     }, label: {
                         Image(systemName: "chevron.left")
                             .foregroundStyle(Color.primary)
-                            .scaleEffect(1.3)
                             .padding(.leading)
                     })
                     
@@ -37,20 +38,22 @@ struct NavigationBar: View {
                 
                 Text("DAMIT")
                     .bold()
-                    .font(.title2)
+                    .font(.title3)
                 
                 Spacer()
                 
                 Button(action: {
-                    withAnimation(.easeInOut(duration: 0.3)) {
-                        model.isShowingMenu.toggle()
-                        model.isSearchFocusedState = false
+                    if !model.isShowingSideSheet {
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            model.isShowingMenu.toggle()
+                            model.isSearchFocusedState = false
+                        }
                     }
                 }, label: {
                     Image(systemName: "line.3.horizontal")
                         .foregroundStyle(Color.primary)
                         .padding(.trailing)
-                        .scaleEffect(1.3)
+                        .opacity(model.isShowingSideSheet ? 0 : 1)
                 })
             }.frame(width: model.screenSize.width)
                 .padding(.vertical)

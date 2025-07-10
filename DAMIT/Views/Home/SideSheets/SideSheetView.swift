@@ -10,14 +10,14 @@ import SwiftUI
 struct SideSheetView: View {
     @EnvironmentObject var model: ContentModel
     
-    @Binding var selectedAsteroid: String?
-    
     var body: some View {
-        AsteroidModelDetail(asteroid: selectedAsteroid ?? "")
+        Text("side sheet")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(.ultraThickMaterial)
     }
 }
 
 #Preview {
-    SideSheetView(selectedAsteroid: .constant("Ceres"))
+    SideSheetView()
         .environmentObject(ContentModel())
 }
