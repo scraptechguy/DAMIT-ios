@@ -70,32 +70,34 @@ struct SearchView: View {
                         .padding([.horizontal, .bottom])
                         .padding(.bottom)
                     
-                    HStack(alignment: .center, spacing: 0) {
-                        Text("Models")
-                            .bold()
-                            .foregroundColor(Color.primary)
-                            .padding(.horizontal)
-                        
-                        Spacer()
-                        
-                        Group {
-                            Text("λ")
+                    if !filteredAsteroids.isEmpty {
+                        HStack(alignment: .center, spacing: 0) {
+                            Text("Models")
                                 .bold()
+                                .foregroundColor(Color.primary)
+                                .padding(.horizontal)
                             
-                            Text("β")
-                                .bold()
+                            Spacer()
                             
-                            Text("*P*")
-                                .bold()
-                        }.foregroundStyle(Color.primary)
-                            .scaledToFit()
-                            .frame(width: model.screenSize.width / 7)
-                            .padding(.horizontal)
-                    }.padding(.bottom)
-                    
-                    Rectangle()
-                        .foregroundStyle(Color.secondary)
-                        .frame(width: model.screenSize.width, height: 1)
+                            Group {
+                                Text("λ")
+                                    .bold()
+                                
+                                Text("β")
+                                    .bold()
+                                
+                                Text("*P*")
+                                    .bold()
+                            }.foregroundStyle(Color.primary)
+                                .scaledToFit()
+                                .frame(width: model.screenSize.width / 7)
+                                .padding(.horizontal)
+                        }.padding(.bottom)
+                        
+                        Rectangle()
+                            .foregroundStyle(Color.secondary)
+                            .frame(width: model.screenSize.width, height: 1)
+                    }
                     
                     ForEach(Array(filteredAsteroids.enumerated()), id: \.offset) { index, asteroid in
                         asteroidRow(for: asteroid)
