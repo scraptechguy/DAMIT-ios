@@ -157,6 +157,12 @@ struct SearchView: View {
             }.onAppear {
                 loadRandomAsteroids()
             }
+            .onChange(of: model.isSearchFocusedState) {
+                isSearchFocused = model.isSearchFocusedState
+            }
+            .onChange(of: isSearchFocused) {
+                model.isSearchFocusedState = isSearchFocused
+            }
         }
     }
     

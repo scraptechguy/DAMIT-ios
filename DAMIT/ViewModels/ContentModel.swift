@@ -12,4 +12,5 @@ class ContentModel: ObservableObject {
     
     @Published var isShowingMenu: Bool = false
     @Published var isShowingSideSheet: Bool = false
+    @Published var isSearchFocusedState: Bool = false
 }

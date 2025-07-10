@@ -44,6 +44,7 @@ struct NavigationBar: View {
                 Button(action: {
                     withAnimation(.easeInOut(duration: 0.3)) {
                         model.isShowingMenu.toggle()
+                        model.isSearchFocusedState = false
                     }
                 }, label: {
                     Image(systemName: "line.3.horizontal")
