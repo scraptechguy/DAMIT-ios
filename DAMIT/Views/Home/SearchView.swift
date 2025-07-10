@@ -59,6 +59,7 @@ struct SearchView: View {
                             TextField("Search asteroids", text: $searchText)
                                 .focused($isSearchFocused)
                                 .padding(.trailing)
+                                .keyboardType(.asciiCapable)
                             
                             Spacer()
                             
