@@ -13,12 +13,12 @@ struct SearchView: View {
     @State private var searchText: String = ""
     @State private var randomAsteroids: [String] = []
     
-    @FocusState private var isFocused: Bool
+    @FocusState private var isSearchFocused: Bool
     
     private var asteroids: [String] = ["Juno", "Ceres", "Pallas", "Vesta", "Dione", "Titan", "Rhea", "Iapetus"]
     
     private func loadRandomAsteroids() {
-        randomAsteroids = Array(asteroids.shuffled().prefix(5))
+        randomAsteroids = Array(asteroids.shuffled().prefix(6))
     }
     
     private var filteredAsteroids: [String] {
@@ -42,9 +42,18 @@ struct SearchView: View {
                     HStack {
                         Spacer()
                         
-                        TextField("🔍  Search asteroids", text: $searchText)
-                            .padding()
-                            .frame(width: model.screenSize.width / 1.8, height: model.screenSize.height / 20)
+                        HStack {
+                            Button(action: {
+                                isSearchFocused = true
+                            }, label: {
+                                Text("🔍")
+                                    .padding(.leading)
+                            })
+                            
+                            TextField("Search asteroids", text: $searchText)
+                                .focused($isSearchFocused)
+                                .padding(.trailing)
+                        }.frame(width: model.screenSize.width / 1.8, height: model.screenSize.height / 20)
                             .background(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(style: StrokeStyle(lineWidth: 1))
@@ -112,11 +121,15 @@ struct SearchView: View {
                         Spacer()
                         
                     } else if searchText.trimmingCharacters(in: .whitespaces).isEmpty {
-                        Text("© 2008–2025 Astronomical Institute of the Charles University, Josef Ďurech, Vojtěch Sidorin, Rostislav Brož | Except where otherwise stated, content on this site is licensed under a Creative Commons Attribution 4.0 International License. | Main contact: Josef Ďurech (durech@sirrah.troja.mff.cuni.cz)")
-                            .multilineTextAlignment(.center)
-                            .font(.footnote)
-                            .foregroundStyle(Color.secondary)
-                            .padding()
+                        Button(action: {
+                            loadRandomAsteroids()
+                        }, label: {
+                            Text("Shuffle recommended asteroids")
+                                .bold()
+                                .font(.callout)
+                                .foregroundStyle(Color.secondary)
+                                .padding()
+                        })
                     }
                 }
             }.onAppear {
@@ -132,7 +145,7 @@ struct SearchView: View {
     @ViewBuilder
     func asteroidRow(for asteroid: String) -> some View {
         Button(action: {
-            isFocused = false
+            isSearchFocused = false
         }, label: {
             VStack(alignment: .leading, spacing: 0) {
                 HStack {

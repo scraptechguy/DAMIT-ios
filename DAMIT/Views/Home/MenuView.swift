@@ -87,6 +87,15 @@ struct MenuView: View {
                         .foregroundStyle(Color.primary)
                         .padding()
                 })
+                
+                Divider()
+                    .frame(width: model.screenSize.width / 1.5)
+                
+                Text("© 2025 Astronomical Institute of the Charles University, Josef Ďurech, Vojtěch Sidorin, Rostislav Brož | Except where otherwise stated, content on this site is licensed under a Creative Commons Attribution 4.0 International License. | Main contact: Rostislav Brož (scraptechguy@gmail.com)")
+                    .multilineTextAlignment(.center)
+                    .font(.footnote)
+                    .foregroundStyle(Color.secondary)
+                    .padding()
             }.padding(.top)
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.ultraThickMaterial)
