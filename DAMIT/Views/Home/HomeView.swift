@@ -10,13 +10,19 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var model: ContentModel
     
+    @State var selectedAsteroid: String?
+    
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
                 NavigationBar()
                 
                 ZStack {
-                    SearchView()
+                    SearchView(selectedAsteroid: $selectedAsteroid)
+                    
+                    SideSheetView(selectedAsteroid: $selectedAsteroid)
+                        .offset(x: model.isShowingSideSheet ? 0 : model.screenSize.width)   // hidden off-screen when closed
+                        .animation(.easeInOut(duration: 0.3), value: model.isShowingSideSheet)
                     
                     MenuView()
                         .offset(x: model.isShowingMenu ? 0 : model.screenSize.width)   // hidden off-screen when closed

@@ -13,10 +13,14 @@ struct NavigationBar: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                if model.isShowingMenu {
+                if model.isShowingMenu || model.isShowingSideSheet {
                     Button(action: {
                         withAnimation(.easeInOut(duration: 0.3)) {
-                            model.isShowingMenu = false
+                            if model.isShowingMenu {
+                                model.isShowingMenu = false
+                            } else if model.isShowingSideSheet {
+                                model.isShowingSideSheet = false
+                            }
                         }
                     }, label: {
                         Image(systemName: "chevron.left")
@@ -32,7 +36,7 @@ struct NavigationBar: View {
                     .padding(.leading)
                 
                 Text("DAMIT")
-                    .bold(model.isShowingMenu ? false : true)
+                    .bold()
                     .font(.title2)
                 
                 Spacer()

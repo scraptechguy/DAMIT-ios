@@ -10,10 +10,16 @@ import SwiftUI
 struct SearchView: View {
     @EnvironmentObject var model: ContentModel
     
+    @Binding var selectedAsteroid: String?
+    
     @State private var searchText: String = ""
     @State private var randomAsteroids: [String] = []
     
     @FocusState private var isSearchFocused: Bool
+    
+    init(selectedAsteroid: Binding<String?>) {
+        self._selectedAsteroid = selectedAsteroid
+    }
     
     private var asteroids: [String] = ["Juno", "Ceres", "Pallas", "Vesta", "Dione", "Titan", "Rhea", "Iapetus"]
     
@@ -157,6 +163,11 @@ struct SearchView: View {
     func asteroidRow(for asteroid: String) -> some View {
         Button(action: {
             isSearchFocused = false
+            selectedAsteroid = asteroid
+            
+            withAnimation(.easeInOut(duration: 0.3)) {
+                model.isShowingSideSheet = true
+            }
         }, label: {
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
@@ -196,6 +207,6 @@ struct SearchView: View {
 }
 
 #Preview {
-    SearchView()
+    SearchView(selectedAsteroid: .constant("Ceres"))
         .environmentObject(ContentModel())
 }
