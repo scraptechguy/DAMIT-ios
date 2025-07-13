@@ -12,7 +12,7 @@ struct NavigationBar: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
+            HStack(spacing: 0) {
                 if model.isShowingMenu || model.isShowingSideSheet || model.isShowingAsteroidDetail {
                     Button(action: {
                         withAnimation(.easeInOut(duration: 0.3)) {
@@ -34,7 +34,9 @@ struct NavigationBar: View {
                 }
                 
                 Image("DAMIT_logo")
-                    .padding(.leading)
+                    .frame(width: 80, height: 0)
+                    .scaleEffect(0.15)
+                    .padding(.leading, 5)
                 
                 Text("DAMIT")
                     .bold()
@@ -57,7 +59,7 @@ struct NavigationBar: View {
                 })
             }.frame(width: model.screenSize.width)
                 .padding(.vertical)
-                .background(.thinMaterial)
+                .background(.ultraThinMaterial)
                 
             Divider()
         }.ignoresSafeArea(edges: .bottom)
