@@ -9,6 +9,9 @@ import Foundation
 
 struct Asteroid: Codable, Identifiable {
     
-    var id: String?
+    var name: String?
+    var diameter: Float?
+    var discovery_date: String?
+    var id: Int?
 
 }

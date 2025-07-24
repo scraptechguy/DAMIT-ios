@@ -13,6 +13,7 @@ struct DAMITApp: App {
         WindowGroup {
             LaunchView()
                 .environmentObject(ContentModel())
+                .environmentObject(FetchData())
         }
     }
 }
